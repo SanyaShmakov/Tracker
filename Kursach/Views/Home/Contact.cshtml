@@ -1,0 +1,21 @@
+﻿@model IEnumerable<StepOfDevelopmentModel>
+@{
+    ViewData["Title"] = "steps";
+}
+
+<nav class="navbar navbar-light bg-light">
+    <span class="navbar-brand mb-0 h1">Users</span>
+</nav>
+
+<ul class="list-group">
+    @foreach (var step in Model)
+    {
+        <ul class="list-group">
+            <li class="list-group-item">@step.StepOfDevelopment</li>
+            <li class="list-group-item">@step.Name</li>
+            <li class="list-group-item">@step.Description</li>
+            <li class="list-group-item">@step.EndDate</li>
+            <li class="list-group-item">@step.ProjectId</li>
+        </ul>
+    }
+       
