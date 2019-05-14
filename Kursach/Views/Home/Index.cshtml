@@ -30,7 +30,6 @@
 		$("#stepsdiv-" + projId).fadeOut("slow");
 
 	}
-
 </script>
 
 @foreach (var project in Model)
@@ -191,31 +190,32 @@
 				}
 			}
 
-		@using (Html.BeginForm("UpdCurStatusOfStep", "Home", FormMethod.Post))
+		@if (step.EndDate == DateTime.MinValue)
 		{
-				<div class="inline" style="margin-right : 10px">
-					<div class="btn-group">
 
-						<button type="submit" id="stepStatus" name="stepStatus" value="2" class="btn btn-primary ">Сменить </button>
-						<input type="hidden" id="stepID" name="stepId" value=@step.StepOfDevelopment>
-						<button type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle "><span class="caret"></span></button>
-						<ul class="dropdown-menu">
+			@using (Html.BeginForm("UpdCurStatusOfStep", "Home", FormMethod.Post))
+			{
+					<div class="inline" style="margin-right : 10px">
+						<div class="btn-group">
 
-					
-							<li><a onclick="" name="stepStatus" value="2"> В процессе</a></li>
-							<li><a href="#" name="stepStatus" value="3"> В аналитике</a></li>
-							<li><a href="#" name="stepStatus" value="4"> В тестировании</a></li>
-							<li><a href="#" name="stepStatus" value="5"> Закрыто</a></li>
-						</ul>
-					</div> 
-				</div>
-		}
+							<button type="button" id="stepStatus" name="stepStatus" value="2" class="btn btn-primary disabled">Статус этапа</button>
+							<input type="hidden" id="stepID" name="stepId" value=@step.StepOfDevelopment>
+							<button type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle "><span class="caret"></span></button>
+							<ul class="dropdown-menu">
+								<li><button type="submit" id="stepStatus" name="stepStatus" value="1" class="btn btn-link">В разработке</button></li>
+								<li><button type="submit" id="stepStatus" name="stepStatus" value="2" class="btn btn-link">В процессе</button></li>								<li><button type="submit" id="stepStatus" name="stepStatus" value="3" class="btn btn-link">В аналитике</button></li>								<li><button type="submit" id="stepStatus" name="stepStatus" value="4" class="btn btn-link">В тестировании</button></li>								<li><button type="submit" id="stepStatus" name="stepStatus" value="5" class="btn btn-link">Закрыто</button></li>
+							</ul>
+						</div> 
+					</div>
+				}
+			}
+
 							</div>
 						</div>
 						
 
 
-						</li>
+					</li>
 				
 			<li class="list-group-item"><b>Описание:</b> @step.Description</li>
 			@if (step.EndDate != DateTime.MinValue)

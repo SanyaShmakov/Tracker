@@ -109,7 +109,7 @@ where Project = @{nameof(projectId)}
             }
         }
 
-		public void UpdateStepOfDevelopmentStatus(int stepId, int elapsedTime)
+		public void UpdateStepOfDevelopmentStatus(int stepId, int elapsedTime, int stepStatus)
 		{
 			using (var conn = Connection)
 			{
@@ -117,9 +117,10 @@ where Project = @{nameof(projectId)}
 				conn.Execute($@"
 update	StepsOfDevelopment   
 set EndDate	= GETDATE(),
-	ElapsedTime = @{nameof(elapsedTime)}
+	ElapsedTime = @{nameof(elapsedTime)},
+	Status = 5
 where StepOfDevelopment = @{nameof(stepId)}
-", new { stepId, elapsedTime });
+", new { stepId, elapsedTime, stepStatus });
 			}
 		}
 

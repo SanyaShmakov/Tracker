@@ -10,7 +10,7 @@ namespace Kursach.Models.Repository
 
         IEnumerable<ProjectModel> GetAllProjectsOfUser(int userId);
 
-        void UpdateStepOfDevelopmentStatus(int stepId, int elapsedTime);
+        void UpdateStepOfDevelopmentStatus(int stepId, int elapsedTime, int stepStatus);
 
         void UpdateProjectStatus(int projectId);
 

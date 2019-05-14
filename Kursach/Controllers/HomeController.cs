@@ -43,9 +43,9 @@ namespace Kursach.Controllers
             return View(projects);
         }
 
-        public IActionResult UpdateStepStatus(int stepId, int elapsedTime)
+        public IActionResult UpdateStepStatus(int stepId, int elapsedTime, int stepStatus)
         {
-			this._projectRepository.UpdateStepOfDevelopmentStatus(stepId, elapsedTime);
+			this._projectRepository.UpdateStepOfDevelopmentStatus(stepId, elapsedTime, stepStatus);
             return RedirectToAction("Index","Home");
         }
 
