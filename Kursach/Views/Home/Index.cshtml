@@ -6,7 +6,8 @@
 <nav class="navbar navbar-light bg-light">
 	<span class="navbar-brand mb-0 h1">Количество проектов с вашим участием: <span class="badge badge-primary badge-pill">@Model.Count()</span></span>
 </nav>
-<script>function PopulateSteps(projId) {
+<script>
+	function PopulateSteps(projId) {
 		var activate = document.getElementById("showbutton-" + projId);
 		var deactivate = document.getElementById("hidebutton-" + projId);
 
@@ -28,7 +29,9 @@
 		var t = document.getElementById("stepsdiv");
 		$("#stepsdiv-" + projId).fadeOut("slow");
 
-	}</script>
+	}
+
+</script>
 
 @foreach (var project in Model)
 {
@@ -131,103 +134,105 @@
 								@switch (step.Status)
 								{
 									case 0:
-										<div class="inline" style="float:left">
-											<b>Этап: </b> @step.Name; <br><b>Статус: </b> не известен;
-										</div>;
+									<div class="inline" style="float:left">
+										<b>Этап: </b> @step.Name <br><b>Статус: </b> не известен
+									</div>;
 										break;
 									case 1:
-										<div class="inline" style="float:left">
-											<b>Этап: </b> @step.Name; <br><b>Статус: </b> в разработке;
-										</div>;
+									<div class="inline" style="float:left">
+										<b>Этап: </b> @step.Name <br><b>Статус: </b> в разработке
+									</div>;
 										break;
 									case 2:
-										<div class="inline" style="float: left">
-											<b>Этап: </b> @step.Name; <br><b>Статус: </b> в процессе;
-										</div>;
+									<div class="inline" style="float: left">
+										<b>Этап: </b> @step.Name <br><b>Статус: </b> в процессе
+									</div>;
 										break;
 									case 3:
-										<div class="inline" style="float:left">
-											<b>Этап: </b> @step.Name; <br><b>Статус: </b> в аналитике;
-										</div>;
+									<div class="inline" style="float:left">
+										<b>Этап: </b> @step.Name <br><b>Статус: </b> в аналитике
+									</div>;
 										break;
 									case 4:
-										<div class="inline" style="float: left">
-											<b>Этап: </b> @step.Name; <br><b>Статус: </b> в тестировании;
-										</div>;
+									<div class="inline" style="float: left">
+										<b>Этап: </b> @step.Name <br><b>Статус: </b> в тестировании
+									</div>;
 										break;
 									case 5:
-										<div class="inline" style="float: left">
-											<b>Этап: </b> @step.Name; <br><b>Статус: </b> закрыт;
-										</div>;
+									<div class="inline" style="float: left">
+										<b>Этап: </b> @step.Name <br><b>Статус: </b> закрыт
+									</div>;
 										break;
 								}
 
-								@if (step.EndDate == DateTime.MinValue)
+			@if (step.EndDate == DateTime.MinValue)
 
-								{
-									@using (Html.BeginForm("UpdateStepStatus", "Home", FormMethod.Post))
-									{
-										<div class="inline" style=" margin-right : 10px" ;>
-											<input type="hidden" id="stepID" name="stepId" value=@step.StepOfDevelopment>
-											<input type="submit" class="btn btn-primary" value="Завернить" />
-										</div>
-										<div class="inline" style=" margin-right : 10px" ;>
-											<input class="form-control" id="elapsedTime" name="elapsedTime" type="text" placeholder="Затраты времени в ч.">
-										</div>
-									}
-								}
+			{
+				@using (Html.BeginForm("UpdateStepStatus", "Home", FormMethod.Post))
+				{
+					<div class="inline" style=" margin-right : 10px" ;>
+						<input type="hidden" id="stepID" name="stepId" value=@step.StepOfDevelopment>
+							<input type="submit" class="btn btn-primary" value="Завернить" />
+						</div>
+						<div class="inline" style=" margin-right : 10px" ;>
+							<input class="form-control" id="elapsedTime" name="elapsedTime" type="text" placeholder="Затраты времени в ч.">
+						</div>
+				}
+			}
 
-								@if (project.AuthorId == int.Parse(User.Identity.Name) && (step.EndDate == DateTime.MinValue))
-								{
-									@using (Html.BeginForm("RemoveStepFromProject", "Home", FormMethod.Post))
-									{
-										<div class="inline" style="margin-right : 10px">
-											<input type="hidden" id="stepID" name="stepId" value=@step.StepOfDevelopment>
-											<button type="submit" class="btn btn-primary" value="Удалить"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
-										</div>
-									}
-								}
+			@if (project.AuthorId == int.Parse(User.Identity.Name) && (step.EndDate == DateTime.MinValue))
+			{
+				@using (Html.BeginForm("RemoveStepFromProject", "Home", FormMethod.Post))
+				{
+						<div class="inline" style="margin-right : 10px">
+							<input type="hidden" id="stepID" name="stepId" value=@step.StepOfDevelopment>
+							<button type="submit" class="btn btn-primary" value="Удалить"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+						</div>
+				}
+			}
 
-								<div class="inline" style="margin-right : 10px">
-									<div class="btn-group">
-										<button type="button" id="main" name="main" class="btn btn-primary disabled ">Статус задачи</button>
-										<button type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle "><span class="caret"></span></button>
-										<ul class="dropdown-menu">
-											<li class="disabled"><a>Статус задачи</a></li>
+		@using (Html.BeginForm("UpdCurStatusOfStep", "Home", FormMethod.Post))
+		{
+				<div class="inline" style="margin-right : 10px">
+					<div class="btn-group">
 
-											<li class="divider"></li>
+						<button type="submit" id="stepStatus" name="stepStatus" value="2" class="btn btn-primary ">Сменить </button>
+						<input type="hidden" id="stepID" name="stepId" value=@step.StepOfDevelopment>
+						<button type="button" data-toggle="dropdown" class="btn btn-primary dropdown-toggle "><span class="caret"></span></button>
+						<ul class="dropdown-menu">
 
-											<li><a href="#" id="1">В разработку</a></li>
-											<li><a href="#" id="2">В процессе</a></li>
-											<li><a href="#" id="3">В аналитике</a></li>
-											<li><a href="#" id="4">В тестировании</a></li>
-											<li><a href="#" id="5">Закрыто</a></li>
-										</ul>
-									</div>
-								</div>
+					
+							<li><a onclick="" name="stepStatus" value="2"> В процессе</a></li>
+							<li><a href="#" name="stepStatus" value="3"> В аналитике</a></li>
+							<li><a href="#" name="stepStatus" value="4"> В тестировании</a></li>
+							<li><a href="#" name="stepStatus" value="5"> Закрыто</a></li>
+						</ul>
+					</div> 
+				</div>
+		}
 							</div>
 						</div>
+						
 
 
+						</li>
+				
+			<li class="list-group-item"><b>Описание:</b> @step.Description</li>
+			@if (step.EndDate != DateTime.MinValue)
+			{
+				<li class="list-group-item list-group-item-success">Этап завершен @step.EndDate.ToShortDateString(); Разработка заняла: @step.ElapsedTime часа(ов) </li>
 
-					</li>
-
-					<li class="list-group-item"><b>Описание:</b> @step.Description</li>
-					@if (step.EndDate != DateTime.MinValue)
-					{
-						<li class="list-group-item list-group-item-success">Этап завершен @step.EndDate.ToShortDateString(); Разработка заняла: @step.ElapsedTime часа(ов) </li>
-
-					}
-					else
-					{
-						<li class="list-group-item list-group-item-danger">Этап в процессе выполнения</li>
-					}
-
-				</ul>
-
-				<hr />
 			}
-		</div>
+			else
+			{
+				<li class="list-group-item list-group-item-danger">Этап в процессе выполнения</li>
+			}
+
+			</ul>
+
+			<hr />
+			}
+			</div>
 	</ul>
 
 }

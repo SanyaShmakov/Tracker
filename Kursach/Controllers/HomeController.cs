@@ -109,5 +109,14 @@ namespace Kursach.Controllers
 
             return RedirectToAction("Index", "Home");
         }
-    }
+
+		public  IActionResult UpdCurStatusOfStep(int stepId, int stepStatus)
+		{
+			this._projectRepository.UpdateCurrentStatusOfStep(stepId, stepStatus);
+
+			return RedirectToAction("Index", "Home");
+
+		}
+
+	}
 }

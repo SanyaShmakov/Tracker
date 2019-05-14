@@ -32,3 +32,4 @@
 /Users/SanyaShmakov/Desktop/Kursach-master/Kursach/obj/Debug/netcoreapp2.1/Kursach.RazorTargetAssemblyInfo.cs
 /Users/SanyaShmakov/Desktop/Kursach-master/Kursach/obj/Debug/netcoreapp2.1/Kursach.Views.pdb
 /Users/SanyaShmakov/Desktop/Kursach-master/Kursach/obj/Debug/netcoreapp2.1/Kursach.csproj.CopyComplete
+/Users/SanyaShmakov/Desktop/Kursach-master/Kursach/obj/Debug/netcoreapp2.1/Kursach.csprojAssemblyReference.cache

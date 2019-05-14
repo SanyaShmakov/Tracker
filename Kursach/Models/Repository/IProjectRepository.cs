@@ -27,5 +27,8 @@ namespace Kursach.Models.Repository
         void WriteUsersToProject(int projectId, int userId);
 
         void WriteNewProject(string ProjectName , double Cost, DateTime Deadline ,int AuthorId);
-    }
+
+		void UpdateCurrentStatusOfStep(int stepId, int stepStatus);
+
+	}
 }

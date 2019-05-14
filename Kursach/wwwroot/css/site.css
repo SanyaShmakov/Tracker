@@ -17,9 +17,33 @@ div.inline {
     width:inherit;
     margin-left: 10px;
 }
-div.inline .first{
-    float: left;
-    width: inherit;
+	div.inline .first {
+		float: left;
+		width: inherit;
+	}
+
+.link-unstyled,
+.link-unstyled:hover,
+.link-unstyled:visited,
+.link-unstyled:hover,
+.link-unstyled:active,
+.link-unstyled:focus,
+.link-unstyled:active:hover {
+	font-style: inherit !important;
+	color: inherit !important;
+	background-color: transparent !important;
+	font-size: inherit !important;
+	text-decoration: none !important;
+	font-variant: inherit !important;
+	font-weight: inherit !important;
+	line-height: inherit !important;
+	font-family: inherit !important;
+	border-radius: inherit !important;
+	border: inherit !important;
+	outline: inherit !important;
+	box-shadow: inherit !important;
+	padding: inherit !important;
+	vertical-align: inherit !important;
 }
 .clearBoth {
     clear: both;

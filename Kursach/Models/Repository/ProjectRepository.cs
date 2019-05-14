@@ -109,17 +109,30 @@ where Project = @{nameof(projectId)}
             }
         }
 
-        public void UpdateStepOfDevelopmentStatus(int stepId, int elapsedTime)
+		public void UpdateStepOfDevelopmentStatus(int stepId, int elapsedTime)
+		{
+			using (var conn = Connection)
+			{
+				conn.Open();
+				conn.Execute($@"
+update	StepsOfDevelopment   
+set EndDate	= GETDATE(),
+	ElapsedTime = @{nameof(elapsedTime)}
+where StepOfDevelopment = @{nameof(stepId)}
+", new { stepId, elapsedTime });
+			}
+		}
+
+		public void UpdateCurrentStatusOfStep(int stepId, int stepStatus)
         {
             using (var conn = Connection)
             {
                 conn.Open();
                 conn.Execute($@"
 update	StepsOfDevelopment   
-set EndDate	= GETDATE(),
-	ElapsedTime = @{nameof(elapsedTime)}
+set Status = @{nameof(stepStatus)}
 where StepOfDevelopment = @{nameof(stepId)}
-", new { stepId, elapsedTime });
+", new { stepId, stepStatus });
             }
         }
 
