@@ -30,5 +30,8 @@ namespace Kursach.Models.Repository
 
 		void UpdateCurrentStatusOfStep(int stepId, int stepStatus);
 
+		void FreezingProjects(int projectId);
+
+		void UnfreezingProjects(int projectId);
 	}
 }

@@ -19,7 +19,8 @@ select	p.Project     	{nameof(ProjectModel.Project)},
         p.Cost          {nameof(ProjectModel.Cost)},
 		p.Deadline	    {nameof(ProjectModel.Deadline)},
         p.IsDone        {nameof(ProjectModel.IsDone)},
-        p.AuthorId      {nameof(ProjectModel.AuthorId)}
+        p.AuthorId      {nameof(ProjectModel.AuthorId)},
+		p.IsPause		{nameof(ProjectModel.IsPause)}
 from UsersInProjects up
 	join Projects p on up.ProjectId = p.Project
 where up.UserId = @{nameof(userId)}
@@ -38,7 +39,8 @@ select	Project     	{nameof(ProjectModel.Project)},
         Cost            {nameof(ProjectModel.Cost)},
 		Deadline	    {nameof(ProjectModel.Deadline)},
         IsDone          {nameof(ProjectModel.IsDone)},
-        AuthorId        {nameof(ProjectModel.AuthorId)}
+        AuthorId        {nameof(ProjectModel.AuthorId)},
+		IsPause			{nameof(ProjectModel.IsPause)}
 from	Projects
 where   UserId = @{nameof(userId)}
 ", new { userId });
@@ -70,8 +72,8 @@ where   ProjectId = @{nameof(projectId)}
             {
                 conn.Open();
                 return conn.Query<UserModel>($@"
-select	id                  {nameof(UserModel.Id)},
-		Name		        {nameof(UserModel.Name)},
+select	id            {nameof(UserModel.Id)},
+		Name		  {nameof(UserModel.Name)},
         Email         {nameof(UserModel.Email)}
 from    Users
 ");
@@ -103,11 +105,38 @@ values
                 conn.Open();
                 conn.Execute($@"
 update	Projects   
-set IsDone	= 1
+set IsDone	= 1,
+set IsPause = 0
 where Project = @{nameof(projectId)}
 ", new { projectId });
             }
         }
+
+		public void FreezingProjects(int projectId)
+		{
+			using (var conn = Connection)
+			{
+				conn.Open();
+				conn.Execute($@"
+update	Projects   
+set IsPause	= 1
+where Project = @{nameof(projectId)}
+", new { projectId });
+			}
+		}
+
+		public void UnfreezingProjects(int projectId)
+		{
+			using (var conn = Connection)
+			{
+				conn.Open();
+				conn.Execute($@"
+update	Projects
+set IsPause	= 0
+where Project = @{nameof(projectId)}
+", new { projectId });
+			}
+		}
 
 		public void UpdateStepOfDevelopmentStatus(int stepId, int elapsedTime, int stepStatus)
 		{
@@ -201,14 +230,15 @@ Where StepOfDevelopment = @{nameof(stepOfDevelopment)}
                 conn.Open();
           
                 conn.Execute($@"
-insert into	Projects  (ProjectName, Cost, Deadline, IsDone, AuthorId) 
+insert into	Projects  (ProjectName, Cost, Deadline, IsDone, AuthorId, IsPause) 
 values
 (  
     @{nameof(ProjectName)},
     @{nameof(Cost)},
     @{nameof(Deadline)},
     0,
-    @{nameof(AuthorId)}
+    @{nameof(AuthorId)},
+	0
 )
 ", new { ProjectName, Cost, Deadline, AuthorId });
                 conn.Execute($@"

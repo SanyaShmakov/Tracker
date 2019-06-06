@@ -12563,9 +12563,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/SanyaShmakov/Desktop/Kursach-master/Kursach/Kursach.csproj",
-      "projectName": "Kursach",
-      "projectPath": "/Users/SanyaShmakov/Desktop/Kursach-master/Kursach/Kursach.csproj",
+      "projectUniqueName": "/Users/SanyaShmakov/Desktop/Kursach-master/Kursach/Diplom.csproj",
+      "projectName": "Diplom",
+      "projectPath": "/Users/SanyaShmakov/Desktop/Kursach-master/Kursach/Diplom.csproj",
       "packagesPath": "/Users/SanyaShmakov/.nuget/packages/",
       "outputPath": "/Users/SanyaShmakov/Desktop/Kursach-master/Kursach/obj/",
       "projectStyle": "PackageReference",

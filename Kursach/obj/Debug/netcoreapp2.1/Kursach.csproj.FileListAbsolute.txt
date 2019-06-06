@@ -1,3 +1,11 @@
+/Users/SanyaShmakov/Desktop/Kursach-master/Kursach/bin/Debug/netcoreapp2.1/Kursach.deps.json
+/Users/SanyaShmakov/Desktop/Kursach-master/Kursach/bin/Debug/netcoreapp2.1/Kursach.runtimeconfig.json
+/Users/SanyaShmakov/Desktop/Kursach-master/Kursach/bin/Debug/netcoreapp2.1/Kursach.runtimeconfig.dev.json
+/Users/SanyaShmakov/Desktop/Kursach-master/Kursach/bin/Debug/netcoreapp2.1/Kursach.dll
+/Users/SanyaShmakov/Desktop/Kursach-master/Kursach/bin/Debug/netcoreapp2.1/Kursach.pdb
+/Users/SanyaShmakov/Desktop/Kursach-master/Kursach/bin/Debug/netcoreapp2.1/Kursach.Views.dll
+/Users/SanyaShmakov/Desktop/Kursach-master/Kursach/bin/Debug/netcoreapp2.1/Kursach.Views.pdb
+/Users/SanyaShmakov/Desktop/Kursach-master/Kursach/obj/Debug/netcoreapp2.1/Kursach.csprojAssemblyReference.cache
 /Users/SanyaShmakov/Desktop/Kursach-master/Kursach/obj/Debug/netcoreapp2.1/Kursach.csproj.CoreCompileInputs.cache
 /Users/SanyaShmakov/Desktop/Kursach-master/Kursach/obj/Debug/netcoreapp2.1/Kursach.RazorAssemblyInfo.cache
 /Users/SanyaShmakov/Desktop/Kursach-master/Kursach/obj/Debug/netcoreapp2.1/Kursach.RazorAssemblyInfo.cs
@@ -6,15 +14,6 @@
 /Users/SanyaShmakov/Desktop/Kursach-master/Kursach/obj/Debug/netcoreapp2.1/Kursach.TagHelpers.input.cache
 /Users/SanyaShmakov/Desktop/Kursach-master/Kursach/obj/Debug/netcoreapp2.1/Kursach.TagHelpers.output.cache
 /Users/SanyaShmakov/Desktop/Kursach-master/Kursach/obj/Debug/netcoreapp2.1/Kursach.RazorCoreGenerate.cache
-/Users/SanyaShmakov/Desktop/Kursach-master/Kursach/obj/Debug/netcoreapp2.1/Kursach.dll
-/Users/SanyaShmakov/Desktop/Kursach-master/Kursach/obj/Debug/netcoreapp2.1/Kursach.pdb
-/Users/SanyaShmakov/Desktop/Kursach-master/Kursach/bin/Debug/netcoreapp2.1/Kursach.deps.json
-/Users/SanyaShmakov/Desktop/Kursach-master/Kursach/bin/Debug/netcoreapp2.1/Kursach.runtimeconfig.json
-/Users/SanyaShmakov/Desktop/Kursach-master/Kursach/bin/Debug/netcoreapp2.1/Kursach.runtimeconfig.dev.json
-/Users/SanyaShmakov/Desktop/Kursach-master/Kursach/bin/Debug/netcoreapp2.1/Kursach.dll
-/Users/SanyaShmakov/Desktop/Kursach-master/Kursach/bin/Debug/netcoreapp2.1/Kursach.pdb
-/Users/SanyaShmakov/Desktop/Kursach-master/Kursach/bin/Debug/netcoreapp2.1/Kursach.Views.dll
-/Users/SanyaShmakov/Desktop/Kursach-master/Kursach/bin/Debug/netcoreapp2.1/Kursach.Views.pdb
 /Users/SanyaShmakov/Desktop/Kursach-master/Kursach/obj/Debug/netcoreapp2.1/Razor/Views/Account/Login.g.cshtml.cs
 /Users/SanyaShmakov/Desktop/Kursach-master/Kursach/obj/Debug/netcoreapp2.1/Razor/Views/Account/Register.g.cshtml.cs
 /Users/SanyaShmakov/Desktop/Kursach-master/Kursach/obj/Debug/netcoreapp2.1/Razor/Views/Home/AddProject.g.cshtml.cs
@@ -31,5 +30,6 @@
 /Users/SanyaShmakov/Desktop/Kursach-master/Kursach/obj/Debug/netcoreapp2.1/Kursach.RazorTargetAssemblyInfo.cache
 /Users/SanyaShmakov/Desktop/Kursach-master/Kursach/obj/Debug/netcoreapp2.1/Kursach.RazorTargetAssemblyInfo.cs
 /Users/SanyaShmakov/Desktop/Kursach-master/Kursach/obj/Debug/netcoreapp2.1/Kursach.Views.pdb
+/Users/SanyaShmakov/Desktop/Kursach-master/Kursach/obj/Debug/netcoreapp2.1/Kursach.dll
+/Users/SanyaShmakov/Desktop/Kursach-master/Kursach/obj/Debug/netcoreapp2.1/Kursach.pdb
 /Users/SanyaShmakov/Desktop/Kursach-master/Kursach/obj/Debug/netcoreapp2.1/Kursach.csproj.CopyComplete
-/Users/SanyaShmakov/Desktop/Kursach-master/Kursach/obj/Debug/netcoreapp2.1/Kursach.csprojAssemblyReference.cache

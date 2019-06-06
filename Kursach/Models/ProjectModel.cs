@@ -19,6 +19,8 @@ namespace Kursach.Models
 
         public int AuthorId { get; set; }
 
+		public bool IsPause { get; set; }
+
         public List<StepOfDevelopmentModel> Steps { get; set; }
     }
 }

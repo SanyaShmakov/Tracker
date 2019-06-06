@@ -49,64 +49,98 @@
 				}
 			}
 
+
 			<div class="row">
 				<div class="inline" style="float:left">
 					<b>@project.ProjectName</b>
 				</div>
 
-				@if (!project.IsDone && project.AuthorId == int.Parse(User.Identity.Name) && !hasSteps)
-				{
-					@using (Html.BeginForm("UpdateProjStatus", "Home", FormMethod.Post))
-					{
+				@if (!project.IsDone && project.AuthorId == int.Parse(User.Identity.Name) && !hasSteps && !project.IsPause)
+	{
+			@using (Html.BeginForm("UpdateProjStatus", "Home", FormMethod.Post))
+{
 
-						<div class="inline" style="margin-right: 10px">
-							<input type="hidden" id="projectID" name="projectId" value=@project.Project>
-							<input type="submit" class="btn btn-success" value="Завершить проект " />
-						</div>
-					}
-				}
-				@if (!project.IsDone)
-				{
-					@using (Html.BeginForm("AddStep", "Home", FormMethod.Post))
-					{
-						<div class="inline" style="margin-right: 10px">
-							<input type="hidden" id="projectID" name="projectId" value=@project.Project>
-							<input type="hidden" id="projectName" name="projectName" value=@project.ProjectName>
-							<input type="submit" class="btn btn-info" value="Добавить этап " />
-						</div>
-					}
-				}
+			<div class="inline" style="margin-right: 10px">
+				<input type="hidden" id="projectID" name="projectId" value=@project.Project>
+				<input type="submit" class="btn btn-success" value="Завершить проект " />
+			</div>
+}
+}
+				@if (!project.IsDone && !project.IsPause)
+	{
+			@using (Html.BeginForm("AddStep", "Home", FormMethod.Post))
+{
+			<div class="inline" style="margin-right: 10px">
+				<input type="hidden" id="projectID" name="projectId" value=@project.Project>
+				<input type="hidden" id="projectName" name="projectName" value=@project.ProjectName>
+				<input type="submit" class="btn btn-info" value="Добавить этап " />
+			</div>
+}
+}
 
-				@if (!project.IsDone && project.AuthorId == int.Parse(User.Identity.Name))
-				{
-					@using (Html.BeginForm("AddUserView", "Home", FormMethod.Post))
-					{
+				@if (!project.IsDone && project.AuthorId == int.Parse(User.Identity.Name) && !project.IsPause)
+	{
+			@using (Html.BeginForm("AddUserView", "Home", FormMethod.Post))
+{
 
-						<div class="inline" style="margin-right: 10px">
-							<input type="hidden" id="projectName" name="projectName" value=@project.ProjectName>
-							<input type="hidden" id="projectID" name="projectId" value=@project.Project>
-							<input type="submit" class="btn btn-warning" value="Управление доступом " />
-						</div>
-					}
-				}
+			<div class="inline" style="margin-right: 10px">
+				<input type="hidden" id="projectName" name="projectName" value=@project.ProjectName>
+				<input type="hidden" id="projectID" name="projectId" value=@project.Project>
+				<input type="submit" class="btn btn-warning" value="Управление доступом " />
+			</div>
+}
+}
+
+				@if (!project.IsDone && project.AuthorId == int.Parse(User.Identity.Name) && project.IsPause)
+	{
+			@using (Html.BeginForm("UnfreezeOfProjects", "Home", FormMethod.Post))
+{
+			<div class="inline" style="margin-right: 10px">
+				<input type="hidden" id="projectName" name="projectName" value=@project.ProjectName>
+				<input type="hidden" id="projectID" name="projectId" value=@project.Project>
+				<input type="submit" class="btn btn-success" value="Возобновить проект" />
+			</div>
+}
+}
+
+				@if (!project.IsDone && project.AuthorId == int.Parse(User.Identity.Name) && !project.IsPause)
+	{
+			@using (Html.BeginForm("FreezeOfProjects", "Home", FormMethod.Post))
+{
+
+			<div class="inline" style="margin-right: 10px">
+				<input type="hidden" id="projectName" name="projectName" value=@project.ProjectName>
+				<input type="hidden" id="projectID" name="projectId" value=@project.Project>
+				<input type="submit" class="btn btn-danger" value="Заморозить проект " />
+			</div>
+}
+}
 
 			</div>
 
-
 		</li>
 		<li class="list-group-item"><b>Стоимость</b> - @project.Cost $</li>
+		@if (!project.IsPause)
+		{
 		<li class="list-group-item"><b>Дедлайн</b> - @project.Deadline.ToShortDateString()</li>
+		}
 
 
 		@if (project.IsDone)
 		{
 			<li class="list-group-item list-group-item-success">Проект завершен</li>
 		}
+		else if (project.IsPause)
+		{
+			<li class="list-group-item list-group-item-danger">Проект заморожен</li>
+		}
 		else
 		{
-			<li class="list-group-item list-group-item-danger">Проект находится в разработке</li>
+			<li class="list-group-item list-group-item-warning">Проект находится в разработке</li>
 		}
 
+		@if (!project.IsPause)
+		{
 		<li class="list-group-item">
 			<div class="row">
 				<div class="inline" style="margin-right:10px ; font-size: 20px; ">
@@ -122,6 +156,7 @@
 				</div>
 			</div>
 		</li>
+		}
 		<br />
 		<div id="stepsdiv-@project.Project" hidden>
 			@foreach (var step in project.Steps)
@@ -171,11 +206,12 @@
 				{
 					<div class="inline" style=" margin-right : 10px" ;>
 						<input type="hidden" id="stepID" name="stepId" value=@step.StepOfDevelopment>
-							<input type="submit" class="btn btn-primary" value="Завернить" />
-						</div>
-						<div class="inline" style=" margin-right : 10px" ;>
-							<input class="form-control" id="elapsedTime" name="elapsedTime" type="text" placeholder="Затраты времени в ч.">
-						</div>
+						<input type="submit" class="btn btn-primary" value="Завернить" />
+					</div>
+
+					<div class="inline" style=" margin-right : 10px" ;>
+						<input class="form-control" id="elapsedTime" name="elapsedTime" type="text" placeholder="Затраты времени в ч.">
+					</div>
 				}
 			}
 

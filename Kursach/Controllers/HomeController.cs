@@ -26,7 +26,7 @@ namespace Kursach.Controllers
         
         public IActionResult Index()
         {
-            var userId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.Name).Value;//получаем ID пользователя из куков
+            var userId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.Name).Value;			//получаем ID пользователя из куков
 
             var projects = _projectRepository.GetAllProjectsOfUser(int.Parse(userId));
 
@@ -118,5 +118,20 @@ namespace Kursach.Controllers
 
 		}
 
+		public IActionResult FreezeOfProjects(int projectId)
+		{
+			this._projectRepository.FreezingProjects(projectId);
+
+			return RedirectToAction("Index", "Home");
+
+		}
+
+		public IActionResult UnfreezeOfProjects(int projectId)
+		{
+			this._projectRepository.UnfreezingProjects(projectId);
+
+			return RedirectToAction("Index", "Home");
+
+		}
 	}
 }
